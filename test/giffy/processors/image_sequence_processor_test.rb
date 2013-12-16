@@ -12,15 +12,17 @@ module Giffy
       end
 
       test "it collects the sequence based on the provided increment" do
-        processor = ImageSequenceProcessor.new(increment: 3)
+        processor = ImageSequenceProcessor.new("increment" => 3)
         results = processor.process(dir)
-        assert_equal %w(001.png 004.png 007.png), results
+        expected = %w(001.png 004.png 007.png).map { |e| "#{dir}/#{e}" }
+        assert_equal expected.join(' '), results
       end
 
       test "it collects the sequence based on the default increment" do
         processor = ImageSequenceProcessor.new
         results = processor.process(dir)
-        assert_equal %w(001.png 006.png), results
+        expected = %w(001.png 006.png).map { |e| "#{dir}/#{e}" }
+        assert_equal expected.join(' '), results
       end
     end
   end

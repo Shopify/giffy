@@ -28,5 +28,9 @@ module Giffy
     def images_directory_path
       fixture_path('test_video_images/')
     end
+
+    def images_sequence
+      Dir.entries(images_directory_path).reject{|e| (e =~ /\.png\z/) == nil}.map{|e| "#{images_directory_path}/#{e}"}.join(' ')
+    end
   end
 end

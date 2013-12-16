@@ -11,7 +11,7 @@ module Giffy
       attr_accessor :args
       def setup
         @dir = Dir.mktmpdir
-        @args = {size: '320x240', dir: dir}
+        @args = {"size" => '320x240', "dir" => dir}
         @processor = VideoExtractionProcessor.new(args)
         @stdout = $stdout
       end
@@ -22,14 +22,14 @@ module Giffy
       end
 
       test "it takes in a provided video path and generates the correct ffmpeg command" do
-        expected_command = "ffmpeg -f image2 #{dir}/%03d.png -i #{video_path} -s #{args[:size]}"
+        expected_command = "ffmpeg -f image2 #{dir}/%03d.png -i #{video_path} -s #{args["size"]}"
         assert_equal expected_command, processor.command(video_path)
       end
 
       test "it can have additional options passed in for start location and video length to generate the ffmpeg command" do
-        self.args = args.merge(start: '0:0:0.4', length: '0:0:0.5')
+        self.args = args.merge("start" => '0:0:0.4', "length" => '0:0:0.5')
         processor = VideoExtractionProcessor.new(args)
-        expected_command = "ffmpeg -f image2 #{dir}/%03d.png -i #{video_path} -t #{args[:length]} -s #{args[:size]} -ss #{args[:start]}"
+        expected_command = "ffmpeg -f image2 #{dir}/%03d.png -i #{video_path} -t #{args["length"]} -s #{args["size"]} -ss #{args["start"]}"
         assert_equal expected_command, processor.command(video_path)
       end
 

@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+# This allows shopify_them to run easily from a git checkout without install.
+# Hat tip to chriseppstein of Compass fame for the code for this
+def fallback_load_path(path)
+  retried = false
+  begin
+    yield
+  rescue LoadError
+    unless retried
+      $: << path
+      retried = true
+      retry
+    end
+    raise
+  end
+end
+
+fallback_load_path(File.join(File.dirname(__FILE__), '..', 'lib')) do
+  require 'thor'
+  require 'pry'
+  require 'pry-debugger'
+  require 'giffy'
+end
+
+module Giffy
+  class CLI < Thor
+    PROCESSORS = [
+      Processors::VideoExtractionProcessor,
+      Processors::ImageSequenceProcessor,
+      Processors::GifGenerationProcessor
+    ]
+
+    COMMANDS = %w(process)
+
+    desc 'process VIDEO_FILE OUTPUT_GIF', 'Convert provided video into a gif'
+    method_options size: :string, start: :string, length: :string
+    def process(video_file, output_gif)
+      pipeline = Pipeline.new(PROCESSORS)
+      result = pipeline.process(video_file, options.merge(filename: output_gif))
+    end
+  end
+end
+
+ARGV.unshift('process') unless Giffy::CLI::COMMANDS.include?(ARGV.first)
+
+Giffy::CLI.start
+
