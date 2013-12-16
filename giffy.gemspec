@@ -6,11 +6,11 @@ require 'giffy/version'
 Gem::Specification.new do |spec|
   spec.name          = "giffy"
   spec.version       = Giffy::VERSION
-  spec.authors       = ["Chris Saunders"]
+  spec.authors       = ["Shopify", "Chris Saunders"]
   spec.email         = ["chris.saunders@shopify.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = "A tool that makes it easy to convert videos into gifs"
+  spec.summary       = "Using existing tools such as ffmpeg and ImageMagick easily create gifs"
+  spec.homepage      = "https://github.com/Shopify/giffy"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

@@ -1,4 +1,4 @@
-Copyright (c) 2013 Chris Saunders
+Copyright (c) 2013 Shopify
 
 MIT License
 

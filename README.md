@@ -1,10 +1,17 @@
 # Giffy
 
-TODO: Write a gem description
+Giffy is a very simple tool to use. The goal was to make it simple to take a screencast/demo
+and convert it into a gif without needing to remember all the incantations required for ffmpeg
+and ImageMagick
 
 ## Installation
 
-Add this line to your application's Gemfile:
+If you want to use the command line tool simply:
+
+    $ gem install giffy
+
+If you want to use custom extensions or use giffy in
+a project add the following to your applications Gemfile:
 
     gem 'giffy'
 
@@ -12,15 +19,16 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install giffy
-
 ## Usage
 
-TODO: Write usage instructions here
+From your terminal simply type the following:
+
+    $ giffy path_to_your_video path_to_where_gif_should_go
 
 ## Contributing
+
+Don't forget to include tests. Contributions without tests may not be
+accepted as quickly.
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
