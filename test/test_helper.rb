@@ -9,7 +9,7 @@ class Minitest::Test
 
   def slow_test(program_name, test_name)
     unless ENV['FULL_SUITE']
-      puts "Processing via #{program_name} is slow, set FULL_SUITE to include #{test_name} in the test run"
+      puts "Processing via #{program_name} is slow, set FULL_SUITE to include #{test_name} in the test run" unless ENV['NO_WARN']
       skip ''
     end
   end
@@ -21,8 +21,12 @@ module Giffy
       File.expand_path(File.join(File.dirname(__FILE__), "fixtures/#{name}"))
     end
 
-    def test_video
+    def video_path
       fixture_path('test_video.mov')
+    end
+
+    def images_directory_path
+      fixture_path('test_video_images/')
     end
   end
 end

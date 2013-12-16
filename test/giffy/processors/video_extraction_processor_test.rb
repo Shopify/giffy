@@ -22,15 +22,15 @@ module Giffy
       end
 
       test "it takes in a provided video path and generates the correct ffmpeg command" do
-        expected_command = "ffmpeg -f image2 #{dir}/%03d.png -i #{test_video} -s #{args[:size]}"
-        assert_equal expected_command, processor.command(test_video)
+        expected_command = "ffmpeg -f image2 #{dir}/%03d.png -i #{video_path} -s #{args[:size]}"
+        assert_equal expected_command, processor.command(video_path)
       end
 
       test "it can have additional options passed in for start location and video length to generate the ffmpeg command" do
         self.args = args.merge(start: '0:0:0.4', length: '0:0:0.5')
         processor = VideoExtractionProcessor.new(args)
-        expected_command = "ffmpeg -f image2 #{dir}/%03d.png -i #{test_video} -t #{args[:length]} -s #{args[:size]} -ss #{args[:start]}"
-        assert_equal expected_command, processor.command(test_video)
+        expected_command = "ffmpeg -f image2 #{dir}/%03d.png -i #{video_path} -t #{args[:length]} -s #{args[:size]} -ss #{args[:start]}"
+        assert_equal expected_command, processor.command(video_path)
       end
 
       test "it can be queried for the directory it will be writing processed files to" do
@@ -41,7 +41,7 @@ module Giffy
         slow_test('ffmpeg', __method__)
         stdout = StringIO.new
         $stdout = stdout
-        dir = processor.process(test_video)
+        dir = processor.process(video_path)
         files = Dir.entries(dir).reject {|file| file =~ /\A\./}
         assert stdout.length > 0, "The mocked stdout should've been written to"
         assert_equal 31, files.length
