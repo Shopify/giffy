@@ -18,8 +18,6 @@ end
 
 fallback_load_path(File.join(File.dirname(__FILE__), '..', 'lib')) do
   require 'thor'
-  require 'pry'
-  require 'pry-debugger'
   require 'giffy'
 end
 
@@ -45,4 +43,3 @@ end
 ARGV.unshift('process') unless Giffy::CLI::COMMANDS.include?(ARGV.first)
 
 Giffy::CLI.start
-
