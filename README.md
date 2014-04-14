@@ -4,6 +4,20 @@ Giffy is a very simple tool to use. The goal was to make it simple to take a scr
 and convert it into a gif without needing to remember all the incantations required for ffmpeg
 and ImageMagick
 
+## Prerequisites
+
+You'll need to have `ffmpeg` and `imagemagick` installed on your system
+
+```
+# Mac OSX & Homebrew
+brew install ffmpeg
+brew install imagemagick
+
+# Debian/Ubuntu
+sudo apt-get install ffmpeg
+sudo apt-get install imagemagick
+```
+
 ## Installation
 
 If you want to use the command line tool simply:
