@@ -10,12 +10,13 @@ You'll need to have `ffmpeg` and `imagemagick` installed on your system
 
 ```
 # Mac OSX & Homebrew
-brew install ffmpeg
-brew install imagemagick
+brew install ffmpeg imagemagick
 
 # Debian/Ubuntu
-sudo apt-get install ffmpeg
-sudo apt-get install imagemagick
+sudo apt-get install ffmpeg imagemagick
+
+# Arch Linux
+pacman -S ffmpeg imagemagick
 ```
 
 ## Installation
